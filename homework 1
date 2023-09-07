@@ -1,0 +1,61 @@
+// ============================================================================
+// diceplot.cpp
+//
+//
+// ============================================================================
+
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+
+// Prototype/define functions anywhere below
+
+int roll() {
+  return rand()%6+1; //returns random num between 1~6
+}
+
+void printHistogram(int counts[]) {
+  for (int i = 0; i <= 20; i++) {
+    cout << i + 4 << ": ";
+    for (int j = 0; j < counts[i]; j++) {
+      cout << "X";
+    }
+    cout << endl;
+  }
+}
+
+
+int main()
+{
+  int seed;
+  int n;
+  cin >> seed >> n;
+
+  // Seed the pseudo-random number generator for repeatable results
+  srand(seed);
+
+    // Your code here
+  int counts[21];
+  for (int i=0; i<21; i++) {  //need to initialize through for loop
+    counts[i] = 0;  
+  }
+  for (int i=0; i<n; i++) {
+
+  int roll1 = roll();
+  int roll2 = roll();
+  int roll3 = roll();
+  int roll4 = roll();
+
+  int sum = roll1 + roll2 + roll3 + roll4;
+  /*  if (i+4 == sum) {
+      counts[i]++;
+    }
+  */
+  counts[sum-4]++;
+
+  }
+  
+  printHistogram(counts);
+
+  return 0;
+}
